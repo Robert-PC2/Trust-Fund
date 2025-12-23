@@ -26,18 +26,11 @@ if (window.location.pathname.includes("dashboard.html")) {
 }
 
 // Logout function
-// Improved logout function – inside js/auth.js
+// Silent logout function - no alert, no "OK" button
 function logout() {
-    // Clear the authentication
     sessionStorage.removeItem("vipAuthenticated");
-    
-    // Optional: Show a quick message (you can remove if you don't want it)
-    alert("You have been logged out successfully.");
-    
-    // Redirect to login page
     window.location.href = "index.html";
 }
-
 // Auto-logout after inactivity
 const INACTIVITY_TIMEOUT = 10 * 60 * 1000;  // 30 minutes in milliseconds (change as needed: 15 * 60 * 1000 = 15 min)
 
