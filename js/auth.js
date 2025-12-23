@@ -1,5 +1,5 @@
 // CHANGE THIS TO YOUR DESIRED ACCESS CODE
-const CORRECT_CODE = "BigOG2025";  // ← Share this with your VIP members
+const CORRECT_CODE = "Myers42";  // ← Share this with your VIP members
 
 // Only run on login page
 if (document.getElementById("loginForm")) {
