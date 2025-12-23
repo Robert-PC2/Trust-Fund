@@ -1,0 +1,287 @@
+/* General */
+body { color: #e2e8f0; min-height: 100vh; }
+.dashboard-body { background: linear-gradient(135deg, #0f172a, #1e293b); }
+.login-body {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.login-body {
+    background: url('../Img/CyberChat.jpg') no-repeat center center fixed;
+    background-size: cover;  /* Makes it fully responsive on all screens */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Login page full responsive background image */
+.login-body {
+    background: url('../Img/CyberChat.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Optional dark overlay for better contrast (adds depth) */
+.login-body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Dark tint - adjust 0.4 to 0.3 for lighter */
+    z-index: 1;
+}
+
+/* Login card - glassmorphism effect */
+.login-card {
+    background: rgba(30, 41, 59, 0.85) !important;     /* Semi-transparent dark slate */
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;  /* Safari support */
+    border-radius: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 20px 40px rgba(236, 150, 150, 0.7);
+    padding: 50px;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    z-index: 2; /* Above the overlay */
+}
+
+/* Logo styling to match your code */
+.login-card .logo {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #3b82f6;
+    margin-bottom: 30px;
+}
+.login-card .logo i {
+    font-size: 2.5rem;
+}
+/* Navbar */
+.navbar { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); }
+
+.main-content {
+    margin-left: 0;
+    padding: 20px 30px 40px;  /* Much tighter top padding – content starts right after navbar */
+}
+
+/* Perfect gap below fixed navbar on desktop */
+.main-content {
+    margin-left: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+/* Mobile adjustment - reduces top space for smaller screens */
+@media (max-width: 768px) {
+    .main-content {
+        padding-top: 0px;  /* Tighter on mobile, like you said it's already good */
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+/*logo style*/
+}
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0d6efd; /* Bootstrap primary */
+}
+
+.logo i {
+  font-size: 30px;
+}
+
+.logo i {
+  color: rgb(255, 255, 255);
+}
+
+/* Cards */
+.card {
+    background: #1e293b;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.metric-card h3 { font-size: 2rem; font-weight: bold; }
+
+/* Colors */
+.text-profit { color: #10b981; }
+.text-primary { color: #3b82f6; }
+
+/* Chart */
+.chart-container { height: 300px; }
+
+/* Login Card */
+.login-card {
+    background: #1e293b;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+}
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #3b82f6;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.btn-login {
+    background: #3b82f6;
+    border: none;
+    padding: 12px;
+    font-size: 1.1rem;
+}
+.btn-login:hover { background: #2563eb; }
+
+/* Responsive */
+@media (max-width: 992px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        min-height: auto;
+        padding-top: 20px;
+    }
+    .main-content { margin-left: 0; }
+}
+/* Better text readability */
+.card h5, .card .text-muted {
+    color: #bcfce9 !important; /* Light gray for labels */
+}
+.card h3, .card .text-white {
+    color: #ffffff !important; /* Pure white for values */
+}
+.list-group-item {
+    color: #e2e8f0 !important;
+}
+.table {
+    color: #e2e8f0;
+}
+.table thead th {
+    color: #cbd5e1;
+}
+
+/* Profile Styling */
+/* Modern Profile Page Styles */
+.profile-header {
+    margin-top: 90px;
+    background: linear-gradient(135deg, #1e293b, #3b82f6);
+    border-radius: 20px;
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 6px solid rgba(81, 243, 175, 0.3);
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.info-card {
+    background: #1e293b;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    height: 100%;
+}
+
+.info-icon {
+    font-size: 1.8rem;
+    color: #3b82f6;
+    margin-bottom: 15px;
+}
+
+.info-label {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-value {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .profile-header {
+        padding: 40px 20px;
+    }
+    .profile-pic {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+/* Personalized Welcome Message */
+.alert-primary {
+    background-color: #10b981;/* Blue gradient – change colors here */
+    color: white !important;
+    border: none;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+.alert-primary strong {
+    color: #ffffff;
+    font-size: 1.4rem;  /* Size of the name – make bigger/smaller */
+}
+
+.alert-primary h4 {
+    font-size: 1.8rem;  /* Welcome text size – adjust as needed */
+    font-weight: bold;
+}
+
+.alert-primary p {
+    font-size: 1.1rem;  /* Subtitle size */
+}
+
+/* Quick Tip Card */
+.card.border-primary {
+    border-color: #126abd !important;
+    background: #1e293b;  /* Dark card background */
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+}
+
+.card.border-primary .card-body {
+    color: #e2e8f0;
+}
+
+.card.border-primary h5 {
+    color: #3b82f6;        /* "Quick Tip" title color */
+    font-size: 1.5rem;     /* Title size */
+}
+
+.card.border-primary i.fa-lightbulb {
+    color: #fbbf24;        /* Yellow bulb icon – change if you want */
+}
+
+.card.border-primary p {
+    font-size: 1.1rem;     /* Guide text size */
+    line-height: 1.6;
+}
+
+.card.border-primary strong {
+    color: #ffffff;        /* Highlighted text like "Menu" and "Profile" */
+}
