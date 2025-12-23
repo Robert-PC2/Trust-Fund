@@ -1,10 +1,11 @@
 // CHANGE THIS TO YOUR DESIRED ACCESS CODE
-const CORRECT_CODE = "Myers42";  // ← Share this with your VIP members
+const CORRECT_CODE = "Myers42";
 
-// Only run on login page
+// ---------------- LOGIN ----------------
 if (document.getElementById("loginForm")) {
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
         e.preventDefault();
+
         const input = document.getElementById("password").value.trim();
         const errorMsg = document.getElementById("errorMsg");
 
@@ -18,21 +19,21 @@ if (document.getElementById("loginForm")) {
     });
 }
 
-// Protect dashboard
+// ---------------- PROTECT DASHBOARD ----------------
 if (window.location.pathname.includes("dashboard.html")) {
     if (sessionStorage.getItem("vipAuthenticated") !== "true") {
         window.location.href = "index.html";
     }
 }
 
-// Logout function
-// Silent logout function - no alert, no "OK" button
+// ---------------- SILENT LOGOUT ----------------
 function logout() {
     sessionStorage.removeItem("vipAuthenticated");
     window.location.href = "index.html";
 }
-// Auto-logout after inactivity
-const INACTIVITY_TIMEOUT = 10 * 60 * 1000;  // 30 minutes in milliseconds (change as needed: 15 * 60 * 1000 = 15 min)
+
+// ---------------- AUTO LOGOUT (SILENT) ----------------
+const INACTIVITY_TIMEOUT = 10 * 60 * 1000; // 10 minutes
 
 let inactivityTimer;
 
@@ -41,19 +42,17 @@ function resetInactivityTimer() {
     inactivityTimer = setTimeout(logout, INACTIVITY_TIMEOUT);
 }
 
-function logoutDueToInactivity() {
-    alert("Session expired due to inactivity. Please log in again.");
-    logout();  // Uses your existing logout function
-}
+// Track user activity
+window.addEventListener("mousemove", resetInactivityTimer);
+window.addEventListener("mousedown", resetInactivityTimer);
+window.addEventListener("keypress", resetInactivityTimer);
+window.addEventListener("scroll", resetInactivityTimer);
+window.addEventListener("touchstart", resetInactivityTimer);
 
-// Reset timer on user activity
-window.addEventListener('mousemove', resetInactivityTimer);
-window.addEventListener('mousedown', resetInactivityTimer);
-window.addEventListener('keypress', resetInactivityTimer);
-window.addEventListener('scroll', resetInactivityTimer);
-window.addEventListener('touchstart', resetInactivityTimer);  // For mobile
-
-// Start timer when page loads (only on protected pages)
-if (window.location.pathname.includes("dashboard.html") || window.location.pathname.includes("profile.html")) {
+// Start timer only on protected pages
+if (
+    window.location.pathname.includes("dashboard.html") ||
+    window.location.pathname.includes("profile.html")
+) {
     resetInactivityTimer();
 }
