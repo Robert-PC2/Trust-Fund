@@ -37,3 +37,30 @@ function logout() {
     // Redirect to login page
     window.location.href = "index.html";
 }
+
+// Auto-logout after inactivity
+const INACTIVITY_TIMEOUT = 10 * 60 * 1000;  // 30 minutes in milliseconds (change as needed: 15 * 60 * 1000 = 15 min)
+
+let inactivityTimer;
+
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(logout, INACTIVITY_TIMEOUT);
+}
+
+function logoutDueToInactivity() {
+    alert("Session expired due to inactivity. Please log in again.");
+    logout();  // Uses your existing logout function
+}
+
+// Reset timer on user activity
+window.addEventListener('mousemove', resetInactivityTimer);
+window.addEventListener('mousedown', resetInactivityTimer);
+window.addEventListener('keypress', resetInactivityTimer);
+window.addEventListener('scroll', resetInactivityTimer);
+window.addEventListener('touchstart', resetInactivityTimer);  // For mobile
+
+// Start timer when page loads (only on protected pages)
+if (window.location.pathname.includes("dashboard.html") || window.location.pathname.includes("profile.html")) {
+    resetInactivityTimer();
+}
