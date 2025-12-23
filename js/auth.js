@@ -26,6 +26,13 @@ if (window.location.pathname.includes("dashboard.html")) {
     }
 }
 
+// ---------------- PROTECT PROFILE PAGE ----------------
+if (window.location.pathname.includes("profile.html")) {
+    if (sessionStorage.getItem("vipAuthenticated") !== "true") {
+        window.location.href = "index.html";
+    }
+}
+
 // ---------------- SILENT LOGOUT ----------------
 function logout() {
     sessionStorage.removeItem("vipAuthenticated");
@@ -41,6 +48,15 @@ function resetInactivityTimer() {
     clearTimeout(inactivityTimer);
     inactivityTimer = setTimeout(logout, INACTIVITY_TIMEOUT);
 }
+// Start or reset timer when page loads
+window.addEventListener('load', function () {
+    if (
+        window.location.pathname.includes("dashboard.html") ||
+        window.location.pathname.includes("profile.html")
+    ) {
+        resetInactivityTimer();
+    }
+});
 
 // Track user activity
 window.addEventListener("mousemove", resetInactivityTimer);
