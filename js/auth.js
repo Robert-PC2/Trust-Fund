@@ -1,5 +1,18 @@
-// CHANGE THIS TO YOUR DESIRED ACCESS CODE
-const CORRECT_CODE = "Myers42";
+// ---------------- MULTIPLE USERS / PASSWORDS ----------------
+// Change or add as many users as you want
+const USERS = {
+    "Myers42": {  // Main / default user
+        dashboard: "dashboard.html",
+        profile: "profile.html"
+    },
+    "Sandy42": {  // Password for User 1
+        dashboard: "dashboard-User1.html",
+        profile: "profile-User1.html"
+    },
+
+    // Add more users here, e.g.:
+    // "Secret123": { dashboard: "dashboard-vip.html", profile: "profile-vip.html" }
+};
 
 // ---------------- LOGIN ----------------
 if (document.getElementById("loginForm")) {
@@ -9,9 +22,14 @@ if (document.getElementById("loginForm")) {
         const input = document.getElementById("password").value.trim();
         const errorMsg = document.getElementById("errorMsg");
 
-        if (input === CORRECT_CODE) {
+        if (USERS[input]) {
+            // Save authentication and user info
             sessionStorage.setItem("vipAuthenticated", "true");
-            window.location.href = "dashboard.html";
+            sessionStorage.setItem("userDashboard", USERS[input].dashboard);
+            sessionStorage.setItem("userProfile", USERS[input].profile);
+
+            // Redirect to their specific dashboard
+            window.location.href = USERS[input].dashboard;
         } else {
             errorMsg.classList.remove("d-none");
             document.getElementById("password").value = "";
@@ -19,23 +37,41 @@ if (document.getElementById("loginForm")) {
     });
 }
 
-// ---------------- PROTECT DASHBOARD ----------------
-if (window.location.pathname.includes("dashboard.html")) {
+// ---------------- PROTECT ALL DASHBOARDS & PROFILES ----------------
+const currentPath = window.location.pathname;
+const isDashboard = currentPath.includes("dashboard");
+const isProfile = currentPath.includes("profile");
+
+if (isDashboard || isProfile) {
     if (sessionStorage.getItem("vipAuthenticated") !== "true") {
         window.location.href = "index.html";
     }
 }
 
-// ---------------- PROTECT PROFILE PAGE ----------------
-if (window.location.pathname.includes("profile.html")) {
-    if (sessionStorage.getItem("vipAuthenticated") !== "true") {
-        window.location.href = "index.html";
+// ---------------- NAVIGATION BETWEEN DASHBOARD & PROFILE ----------------
+// Add correct links in navbar dropdown (runs on dashboard & profile pages)
+if (isDashboard || isProfile) {
+    const userDashboard = sessionStorage.getItem("userDashboard") || "dashboard.html";
+    const userProfile = sessionStorage.getItem("userProfile") || "profile.html";
+
+    // Update Profile link in dropdown (if exists)
+    const profileLink = document.querySelector('a.dropdown-item[href*="profile"]');
+    if (profileLink) {
+        profileLink.href = userProfile;
+    }
+
+    // Update Dashboard link in navbar brand (if needed)
+    const dashboardLink = document.querySelector('a.navbar-brand');
+    if (dashboardLink) {
+        dashboardLink.href = userDashboard;
     }
 }
 
 // ---------------- SILENT LOGOUT ----------------
 function logout() {
     sessionStorage.removeItem("vipAuthenticated");
+    sessionStorage.removeItem("userDashboard");
+    sessionStorage.removeItem("userProfile");
     window.location.href = "index.html";
 }
 
@@ -48,27 +84,18 @@ function resetInactivityTimer() {
     clearTimeout(inactivityTimer);
     inactivityTimer = setTimeout(logout, INACTIVITY_TIMEOUT);
 }
-// Start or reset timer when page loads
+
+// Start timer on load for protected pages
 window.addEventListener('load', function () {
-    if (
-        window.location.pathname.includes("dashboard.html") ||
-        window.location.pathname.includes("profile.html")
-    ) {
+    if (isDashboard || isProfile) {
         resetInactivityTimer();
     }
 });
 
-// Track user activity
+// Reset on activity
 window.addEventListener("mousemove", resetInactivityTimer);
 window.addEventListener("mousedown", resetInactivityTimer);
 window.addEventListener("keypress", resetInactivityTimer);
 window.addEventListener("scroll", resetInactivityTimer);
 window.addEventListener("touchstart", resetInactivityTimer);
-
-// Start timer only on protected pages
-if (
-    window.location.pathname.includes("dashboard.html") ||
-    window.location.pathname.includes("profile.html")
-) {
-    resetInactivityTimer();
-}
+window.addEventListener("click", resetInactivityTimer);
