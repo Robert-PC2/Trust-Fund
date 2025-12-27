@@ -9,7 +9,14 @@ const USERS = {
         dashboard: "dashboard-User1.html",
         profile: "profile-User1.html"
     },
-
+    "mandy42": {  // Password for User 2
+        dashboard: "dashboard-User2.html",
+        profile: "profile-User2.html"
+    },    
+    "pandy42": {  // Password for User 3
+        dashboard: "dashboard-User3.html",
+        profile: "profile-User3.html"
+    },
     // Add more users here, e.g.:
     // "Secret123": { dashboard: "dashboard-vip.html", profile: "profile-vip.html" }
 };

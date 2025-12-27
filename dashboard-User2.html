@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust Fund - Dashboard-User1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="./Css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+    <!-- Authentication Check -->
+    <script src="./js/auth.js"></script>
+
+    <!-- Navbar -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white fw-bold" href="dashboard-User1.html">
+            <i class="fa-solid fa-building-columns" style="margin-right: 5px;"></i>Sandy Funds</a>
+        <div class="d-flex align-items-center ms-auto">
+            <div class="dropdown">
+                <button class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fas fa-user-circle fa-lg"></i> Menu
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item active" href="dashboard-User1.html">Dashboard</a></li>
+                    <li><a class="dropdown-item" href="profile-User1.html">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#" onclick="logout()">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content (full width now) -->
+<div class="main-content" style="margin-left: 0; padding-top: 100px;">
+    <!-- All your previous content: metric cards, chart, active plans, transactions, withdrawal modal -->
+    
+    
+    <!-- Main Content -->
+     <!-- Personalized Welcome -->
+<div class="alert alert-primary border-0 rounded-4 py-4 mb-4 text-center" role="alert">
+    <h4 class="mb-2">
+        <i class="fas fa-handshake me-2"></i>
+        Welcome back,
+    </h4>
+    <strong>Sandy Funds</strong>
+    <p class="mb-0 text-light">Your VIP Platinum account is active and growing.</p>
+</div>
+<!-- Helpful Guide Card -->
+<div class="card border-primary mb-4">
+    <div class="card-body text-center py-4">
+        <i class="fas fa-lightbulb fa-2x text-primary mb-3"></i>
+        <h5>Quick Tip</h5>
+        <p class="mb-3">
+            Want to view your personal details, or referral code?
+        </p>
+        <p class="mb-0">
+            Click the <strong><i class="fas fa-user-circle me-1"></i> Menu</strong> in the top right → select <strong><a href="./profile-User1.html" style="color: white; text-decoration-line: none;"> Profile</strong></a>
+        </p>
+    </div>
+</div>
+</div>
+
+    <div class="main-content">
+        <h2 class="mb-4">Investment Overview</h2>
+
+        <!-- Metric Cards -->
+        <div class="row mb-4 g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card p-4 text-center">
+                    <h5 class="text-muted">Current Balance</h5>
+                    <h3 class="text-white">$61,520.00</h3>
+                    <small class="text-profit">+12.5% this week</small>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card p-4 text-center">
+                    <h5 class="text-muted">Total Invested</h5>
+                    <h3 class="text-white">$2,000.00</h3>
+                    <small class="text-white-50">Principal Amount</small>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card p-4 text-center">
+                    <h5 class="text-muted">Total Returns Earned</h5>
+                    <h3 class="text-profit">$59,520</h3>
+                    <small class="text-profit">+88.6% ROI</small>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card p-4 text-center">
+                    <h5 class="text-muted">Projected Weekly Yield</h5>
+                    <h3 class="text-primary">15%-35%</h3>
+                    <small class="text-white-50">Based on VIP Plan</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart + Active Plans -->
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="card p-4">
+                    <h5 class="mb-3">Returns Growth</h5>
+                    <div class="chart-container">
+                        <canvas id="returnsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card p-4">
+                    <h5 class="mb-3">Active Plans</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item bg-transparent text-white d-flex justify-content-between">
+                            <span>VIP Platinum Plan</span>
+                            <span class="text-profit">$20,000</span>
+                        </li>
+                        <li class="list-group-item bg-transparent text-white d-flex justify-content-between">
+                            <span>VIP Gold Plan</span>
+                            <span class="text-profit">$10,000</span>
+                        </li>
+                        <li class="list-group-item bg-transparent text-white d-flex justify-content-between">
+                            <span>Bitcoin Holding</span>
+                            <span class="text-profit">$5,000</span>
+                        </li>
+                        <li class="list-group-item bg-transparent text-success fw-bold d-flex justify-content-between border-top pt-3">
+                            <span>Total Active</span>
+                            <span>$35,000</span>
+                        </li>
+                    </ul>
+                    <button class="btn btn-primary w-100 mt-3" disabled>Invest More</button>
+                </div>
+            </div>
+        </div>
+
+
+ <!--use this code to activate the withdrwal button below. just paste where you have "disabled".
+data-bs-toggle="modal" data-bs-target="#withdrawalModal"--> 
+        
+<button class="btn btn-success w-100 mt-3" disabled>
+    <i class="fas fa-money-bill-wave me-2"></i> Withdrawal Locked
+</button>
+<small class="d-block text-center text-success mt-2">
+    Available soon for eligible accounts
+</small>
+
+        <!-- Transactions Table -->
+        <div class="card p-4 mt-4">
+            <h5 class="mb-3">Recent Transactions</h5>
+            <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dec 15, 2025</td>
+                            <td>Profit</td>
+                            <td>Monthly Yield - VIP Platinum</td>
+                            <td class="text-profit">+$3,200.00</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Dec 10, 2025</td>
+                            <td>Investment</td>
+                            <td>New Deposit</td>
+                            <td class="text-white">+$10,000.00</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Nov 30, 2025</td>
+                            <td>Profit</td>
+                            <td>Monthly Yield - VIP Gold</td>
+                            <td class="text-profit">+$1,800.00</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Nov 15, 2025</td>
+                            <td>Withdrawal</td>
+                            <td>To Bank Account</td>
+                            <td class="text-warning">-$5,000.00</td>
+                            <td><span class="badge bg-warning">Processing</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<!-- Withdrawal Request Modal -->
+<div class="modal fade" id="withdrawalModal" tabindex="-1" aria-labelledby="withdrawalModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="withdrawalModalLabel">
+                    <i class="fas fa-money-bill-wave me-2"></i> Request Withdrawal
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="withdrawalForm">
+                    <div class="mb-3">
+                        <div class="mb-3">
+    <label for="userName" class="form-label">Your Full Name</label>
+    <input type="text" class="form-control" id="userName" placeholder="robert Myers" required>
+</div>
+<div class="mb-3">
+    <label for="userEmail" class="form-label">Your Email</label>
+    <input type="email" class="form-control" id="userEmail" placeholder="john@example.com" required>
+</div>
+                        <label class="form-label">Available Balance</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control" id="availableBalance" value="48,520.00" disabled>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Amount to Withdraw</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" class="form-control" id="amount" placeholder="Enter amount" min="100" required>
+                        </div>
+                        <small class="text-muted">Minimum: $12,000</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="method" class="form-label">Withdrawal Method</label>
+                        <select class="form-select bg-secondary text-light" id="method" required>
+                            <option value="">Choose method</option>
+                            <option>Bank Transfer</option>
+                            <option>Bitcoin (BTC)</option>
+                            <option>USDT (TRC20)</option>
+                            <option>PayPal</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="details" class="form-label">Account/Wallet Details</label>
+                        <textarea class="form-control bg-secondary text-light" id="details" rows="3" placeholder="Bank account number, wallet address, etc." required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" onclick="submitWithdrawalRequest()">
+                    <i class="fas fa-paper-plane me-2"></i> Submit Request
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Simple Submission Feedback Script -->
+<script>
+    function submitWithdrawalRequest() {
+        const amount = document.getElementById('amount').value;
+        const method = document.getElementById('method').value;
+
+        if (!amount || amount < 100 || !method) {
+            alert("Please fill in all fields correctly (minimum $100).");
+            return;
+        }
+
+        alert(`Withdrawal request for $${amount} via ${method} submitted successfully!\n\nYou will receive confirmation soon.`);
+        
+        // Close modal and reset form
+        bootstrap.Modal.getInstance(document.getElementById('withdrawalModal')).hide();
+        document.getElementById('withdrawalForm').reset();
+    }
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/chart.js"></script>
+</body>
+</html>
